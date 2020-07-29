@@ -17,9 +17,7 @@
 		8E50E8CB24D010A300243324 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50E8CA24D010A300243324 /* ListViewController.swift */; };
 		8E50E8CD24D0172500243324 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8E50E8CC24D0172500243324 /* Podfile */; };
 		8E50E8D024D01A5500243324 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50E8CF24D01A5500243324 /* TableViewCell.swift */; };
-		8E603AAD24D10DB400F8FF99 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E603AAC24D10DB400F8FF99 /* API.swift */; };
 		8E603AB124D1710A00F8FF99 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E603AB024D1710A00F8FF99 /* Models.swift */; };
-		8E603AB324D174E700F8FF99 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E603AB224D174E700F8FF99 /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +33,7 @@
 		8E50E8CA24D010A300243324 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8E50E8CC24D0172500243324 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8E50E8CF24D01A5500243324 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		8E603AAC24D10DB400F8FF99 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8E603AB024D1710A00F8FF99 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		8E603AB224D174E700F8FF99 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D3F1BB3C0AB0D03FC4DF8073 /* Pods-SampleRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleRxSwift.release.xcconfig"; path = "Target Support Files/Pods-SampleRxSwift/Pods-SampleRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		E67BE1DBBDFCC9418E97DB28 /* Pods-SampleRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleRxSwift.debug.xcconfig"; path = "Target Support Files/Pods-SampleRxSwift/Pods-SampleRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +75,6 @@
 				8E50E8BA24D0108000243324 /* ViewController.swift */,
 				8E50E8CA24D010A300243324 /* ListViewController.swift */,
 				8E50E8CF24D01A5500243324 /* TableViewCell.swift */,
-				8E603AAC24D10DB400F8FF99 /* API.swift */,
-				8E603AB224D174E700F8FF99 /* APIClient.swift */,
 				8E603AB024D1710A00F8FF99 /* Models.swift */,
 				8E50E8BC24D0108000243324 /* Main.storyboard */,
 				8E50E8C424D0108200243324 /* Info.plist */,
@@ -236,10 +230,8 @@
 				8E50E8D024D01A5500243324 /* TableViewCell.swift in Sources */,
 				8E50E8BB24D0108000243324 /* ViewController.swift in Sources */,
 				8E50E8B724D0108000243324 /* AppDelegate.swift in Sources */,
-				8E603AB324D174E700F8FF99 /* APIClient.swift in Sources */,
 				8E50E8CB24D010A300243324 /* ListViewController.swift in Sources */,
 				8E50E8B924D0108000243324 /* SceneDelegate.swift in Sources */,
-				8E603AAD24D10DB400F8FF99 /* API.swift in Sources */,
 				8E603AB124D1710A00F8FF99 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,13 +11,9 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
-
-    private let apiClient = APIClient()
-    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var selectCityButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
-        
     @IBAction func selectCityButtonTapped(_ sender: UIButton) {
 
     }
@@ -30,13 +26,11 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         let cityStr = UserDefaults.standard.object(forKey:"cityName") as? String ?? ""
         cityLabel.text = cityStr.count > 0 ? "Selected city: \(cityStr)" : ""
     }
     
     func prepareViews() {
-        
         cityLabel.text = ""
         selectCityButton.layer.cornerRadius = 10;
         selectCityButton.clipsToBounds = true;

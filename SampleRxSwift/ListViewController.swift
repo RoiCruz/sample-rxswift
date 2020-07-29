@@ -15,14 +15,13 @@ class ListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    private let apiClient = APIClient()
     private let disposeBag = DisposeBag()
     private let cities: BehaviorRelay<[CityModel]> = BehaviorRelay(value: [])
     private var filteredCities: BehaviorRelay<[CityModel]> = BehaviorRelay(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         filteredCities.bind(to: tableView.rx.items(cellIdentifier: "cityCell", cellType: TableViewCell.self)) { row, model, cell in
             let name = model.name
             cell.titleLabel?.text = name
@@ -35,7 +34,6 @@ class ListViewController: UIViewController {
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 let city:CityModel = (self?.filteredCities.value[indexPath.row])!
-                print("RRC \(city.name) row: \(indexPath.row)")
                 UserDefaults.standard.set("\(city.name)", forKey: "cityName")
                 self?.navigationController?.popViewController(animated: true)
             }).disposed(by: disposeBag)
@@ -45,14 +43,13 @@ class ListViewController: UIViewController {
             .orEmpty
             .subscribe(onNext: { [unowned self] query in
                 self.filteredCities.accept( self.cities.value.filter { $0.name.hasPrefix(query) })
-                print(self.filteredCities.value)
                 self.tableView.keyboardDismissMode = .onDrag
                 self.tableView.reloadData()
             }).disposed(by: disposeBag)
         
         fetchData()
     }
-        
+    
     private func fetchData() {
         
         let session = URLSession.shared
@@ -72,35 +69,5 @@ class ListViewController: UIViewController {
             }
         })
         task.resume()
-    }
-}
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(#function)
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell") as? TableViewCell {
-            
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        print(indexPath.section)
-        print(indexPath.row)
-        
-        //dismiss self
-        //pass data to main view controller
     }
 }

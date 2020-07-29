@@ -10,7 +10,6 @@ import Foundation
 
 struct Response: Codable {
     let data: Array<CityModel>
-    
 }
 
 struct CityModel: Codable {
