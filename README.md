@@ -15,7 +15,8 @@ Libraries used:
 - RxCocoa
 
 How to run the project:
-1. cd to project directory
-2. run pod install
+1. ope terminal
+2. cd to project directory
+3. run pod install
 
 
