@@ -2,7 +2,7 @@
 //  ListViewController.swift
 //  SampleRxSwift
 //
-//  Created by Roi Cruz on 7/28/20.
+//  Created by Roy Cruz on 7/28/20.
 //  Copyright © 2020 Roy Cruz. All rights reserved.
 //
 
@@ -34,15 +34,11 @@ class ListViewController: UIViewController {
         
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                
-                //let home = self?.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
                 let city:CityModel = (self?.filteredCities.value[indexPath.row])!
                 print("RRC \(city.name) row: \(indexPath.row)")
-                //home.cityLabel. = city.name
+                UserDefaults.standard.set("\(city.name)", forKey: "cityName")
                 self?.navigationController?.popViewController(animated: true)
-//                self?.navigationController?.popToViewController(home, animated: true)
             }).disposed(by: disposeBag)
-        
         
         searchBar
             .rx.text

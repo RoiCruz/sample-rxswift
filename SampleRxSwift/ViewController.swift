@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  SampleRxSwift
 //
-//  Created by Roi Cruz on 7/28/20.
+//  Created by Roy Cruz on 7/28/20.
 //  Copyright © 2020 Roy Cruz. All rights reserved.
 //
 
@@ -17,23 +17,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var selectCityButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
-    
-    var selectedCityString: String!
-    
+        
     @IBAction func selectCityButtonTapped(_ sender: UIButton) {
 
-        //show list of cities
-        //do API calls
     }
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-
+        let cityStr = UserDefaults.standard.object(forKey:"cityName") as? String ?? ""
+        cityLabel.text = cityStr.count > 0 ? "Selected city: \(cityStr)" : ""
+    }
 }
 

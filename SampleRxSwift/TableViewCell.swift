@@ -2,7 +2,7 @@
 //  TableViewCell.swift
 //  SampleRxSwift
 //
-//  Created by Roi Cruz on 7/28/20.
+//  Created by Roy Cruz on 7/28/20.
 //  Copyright © 2020 Roy Cruz. All rights reserved.
 //
 
