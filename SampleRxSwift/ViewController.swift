@@ -7,9 +7,19 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
 
+
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    @IBAction func selectCityButtonTapped(_ sender: UIButton) {
+        //show list of cities
+        //do API calls
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

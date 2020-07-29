@@ -1,5 +1,5 @@
 //
-//  Models.swift
+//  CityModel.swift
 //  SampleRxSwift
 //
 //  Created by Roi Cruz on 7/29/20.
@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+struct Response: Codable {
+    let data: Array<CityModel>
+    
+}
+
+struct CityModel: Codable {
+    let id: Int
+    let name: String
+    let country: CountryModel
+}
+
+struct CountryModel:Codable {
+    let name: String
+}

@@ -28,14 +28,24 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Tap to select city"/>
                                         <connections>
+                                            <action selector="selectCityButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JA3-ZO-fnf"/>
                                             <segue destination="JGO-tN-L4k" kind="show" id="HRB-w4-pVW"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected city: Barnsley" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmW-PV-yYo">
+                                        <rect key="frame" x="20" y="110" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="FmW-PV-yYo" firstAttribute="leading" secondItem="ocn-Kj-dna" secondAttribute="leading" constant="20" id="5vO-oR-SO5"/>
+                                    <constraint firstItem="FmW-PV-yYo" firstAttribute="top" secondItem="fVZ-db-7XM" secondAttribute="bottom" constant="10" id="EdH-Em-7kj"/>
                                     <constraint firstAttribute="trailing" secondItem="fVZ-db-7XM" secondAttribute="trailing" constant="20" id="QBt-He-aOt"/>
                                     <constraint firstItem="fVZ-db-7XM" firstAttribute="top" secondItem="ocn-Kj-dna" secondAttribute="top" constant="40" id="UOZ-1W-IdP"/>
+                                    <constraint firstAttribute="trailing" secondItem="FmW-PV-yYo" secondAttribute="trailing" constant="20" id="rBO-9g-hYM"/>
                                     <constraint firstItem="fVZ-db-7XM" firstAttribute="leading" secondItem="ocn-Kj-dna" secondAttribute="leading" constant="20" id="wbd-O2-Dui"/>
                                 </constraints>
                             </view>
@@ -50,6 +60,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wv7-53-KYw"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="FmW-PV-yYo" id="R7J-6D-ucS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,7 +102,7 @@
                                 <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="AHf-on-az0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cityCell" rowHeight="84" id="AHf-on-az0" customClass="TableViewCell" customModule="SampleRxSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AHf-on-az0" id="5qR-Cy-yob">
@@ -98,8 +111,18 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYd-Ik-cmH">
                                                     <rect key="frame" x="20" y="11" width="62" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsF-XC-obq">
+                                                            <rect key="frame" x="19.5" y="22" width="23.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="AsF-XC-obq" firstAttribute="centerX" secondItem="BYd-Ik-cmH" secondAttribute="centerX" id="6Ut-xe-zxS"/>
+                                                        <constraint firstItem="AsF-XC-obq" firstAttribute="centerY" secondItem="BYd-Ik-cmH" secondAttribute="centerY" id="H5C-zw-Ig3"/>
                                                         <constraint firstAttribute="height" constant="62" id="cGY-iU-Elt"/>
                                                         <constraint firstAttribute="width" constant="62" id="kOs-bW-o6U"/>
                                                     </constraints>
@@ -130,8 +153,18 @@
                                                 <constraint firstItem="BYd-Ik-cmH" firstAttribute="top" secondItem="5qR-Cy-yob" secondAttribute="top" constant="11" id="w8t-gx-EAh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarLabel" destination="AsF-XC-obq" id="XYy-Ys-sTZ"/>
+                                            <outlet property="avatarView" destination="BYd-Ik-cmH" id="IhK-xd-Uc9"/>
+                                            <outlet property="subtitleLabel" destination="ZWR-tu-Agz" id="r0m-B3-5Px"/>
+                                            <outlet property="titleLabel" destination="MjX-Xl-oCt" id="h5C-Xb-VYt"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JGO-tN-L4k" id="ILO-Xh-Vh2"/>
+                                    <outlet property="delegate" destination="JGO-tN-L4k" id="Di6-gZ-q1o"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -148,6 +181,10 @@
                         <viewLayoutGuide key="safeArea" id="viK-UP-OEn"/>
                     </view>
                     <navigationItem key="navigationItem" id="f3y-U1-oSY"/>
+                    <connections>
+                        <outlet property="searchBar" destination="dLc-Cd-bHB" id="bft-jV-17Y"/>
+                        <outlet property="tableView" destination="o20-ht-YSz" id="nKF-us-V3q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cg-OM-TfB" sceneMemberID="firstResponder"/>
             </objects>
