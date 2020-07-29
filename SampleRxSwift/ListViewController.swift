@@ -18,11 +18,12 @@ class ListViewController: UIViewController {
     private let apiClient = APIClient()
     private let disposeBag = DisposeBag()
     private let cities: BehaviorRelay<[CityModel]> = BehaviorRelay(value: [])
+    private var filteredCities: BehaviorRelay<[CityModel]> = BehaviorRelay(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        cities.bind(to: tableView.rx.items(cellIdentifier: "cityCell", cellType: TableViewCell.self)) { row, model, cell in
+        
+        filteredCities.bind(to: tableView.rx.items(cellIdentifier: "cityCell", cellType: TableViewCell.self)) { row, model, cell in
             let name = model.name
             cell.titleLabel?.text = name
             cell.subtitleLabel?.text = model.country.name
@@ -31,16 +32,14 @@ class ListViewController: UIViewController {
             cell.avatarLabel?.text = String(substring)
         }.disposed(by: disposeBag)
         
-//        tableView.rx.modelSelected(CityModel.self)
-//            .map{ URL(string: $0.name) }
-//            .subscribe(onNext: { [weak self] name in
-//                guard let name = name else {
-//                    return
-//                }
-//                //self?.present(SFSafariViewController(url: url), animated: true)
-//                //pop to previous vc
-//                //save to local db
-//            }).disposed(by: disposeBag)
+        searchBar
+            .rx.text
+            .orEmpty
+            .subscribe(onNext: { [unowned self] query in // Here we will be notified of every new value
+                self.filteredCities.accept( self.cities.value.filter { $0.name.hasPrefix(query) })
+                print(self.filteredCities.value)
+                self.tableView.reloadData()
+            }).disposed(by: disposeBag)
         
         fetchData()
     }
@@ -69,6 +68,7 @@ class ListViewController: UIViewController {
                 let json = try JSONDecoder().decode(Response.self, from: data! )
                 let cities = json.data
                 self.cities.accept(cities)
+                self.filteredCities.accept(cities)
                 
                 print(json)
             } catch {
