@@ -32,6 +32,18 @@ class ListViewController: UIViewController {
             cell.avatarLabel?.text = String(substring)
         }.disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                
+                //let home = self?.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                let city:CityModel = (self?.filteredCities.value[indexPath.row])!
+                print("RRC \(city.name) row: \(indexPath.row)")
+                //home.cityLabel. = city.name
+                self?.navigationController?.popViewController(animated: true)
+//                self?.navigationController?.popToViewController(home, animated: true)
+            }).disposed(by: disposeBag)
+        
+        
         searchBar
             .rx.text
             .orEmpty
@@ -46,16 +58,24 @@ class ListViewController: UIViewController {
     
     //#MARK: Private Methods
     
-    private func citySelected() {
-        //         let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        //         vc.selectedCity
-        //         .subscribe(onNext: { [weak self] city in
-        //             self?.greetingsLabel.text = "Hello \(character)"
-        //         }).disposed(by: disposeBag)
-        //
-        //        navigationController?.popToViewController(vc, animated: true)
-        
-    }
+//    private func citySelected() {
+//
+//        self.viewModel.shiftNameText
+//            .asObservable()
+//            .map { $0 }
+//            .bind(to:self.shiftLabel.rx.text)
+//            .disposed(by:self.disposeBag)
+//
+//
+//        let home = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//        home.cityLabel
+//            .subscribe(onNext: { [weak self] city in
+//                self?.greetingsLabel.text = "Hello \(character)"
+//            }).disposed(by: disposeBag)
+//
+//        navigationController?.popToViewController(vc, animated: true)
+//
+//    }
     
     private func fetchData() {
         let session = URLSession.shared

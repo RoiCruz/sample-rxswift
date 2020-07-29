@@ -14,10 +14,11 @@ class ViewController: UIViewController {
 
     private let apiClient = APIClient()
     private let disposeBag = DisposeBag()
-
-
+    
     @IBOutlet weak var selectCityButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
+    
+    var selectedCityString: String!
     
     @IBAction func selectCityButtonTapped(_ sender: UIButton) {
 
@@ -29,6 +30,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
     }
 
 
