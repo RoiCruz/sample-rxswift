@@ -22,7 +22,7 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         filteredCities.bind(to: tableView.rx.items(cellIdentifier: "cityCell", cellType: TableViewCell.self)) { row, model, cell in
             let name = model.name
             cell.titleLabel?.text = name
@@ -43,37 +43,18 @@ class ListViewController: UIViewController {
         searchBar
             .rx.text
             .orEmpty
-            .subscribe(onNext: { [unowned self] query in // Here we will be notified of every new value
+            .subscribe(onNext: { [unowned self] query in
                 self.filteredCities.accept( self.cities.value.filter { $0.name.hasPrefix(query) })
                 print(self.filteredCities.value)
+                self.tableView.keyboardDismissMode = .onDrag
                 self.tableView.reloadData()
             }).disposed(by: disposeBag)
         
         fetchData()
     }
-    
-    //#MARK: Private Methods
-    
-//    private func citySelected() {
-//
-//        self.viewModel.shiftNameText
-//            .asObservable()
-//            .map { $0 }
-//            .bind(to:self.shiftLabel.rx.text)
-//            .disposed(by:self.disposeBag)
-//
-//
-//        let home = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-//        home.cityLabel
-//            .subscribe(onNext: { [weak self] city in
-//                self?.greetingsLabel.text = "Hello \(character)"
-//            }).disposed(by: disposeBag)
-//
-//        navigationController?.popToViewController(vc, animated: true)
-//
-//    }
-    
+        
     private func fetchData() {
+        
         let session = URLSession.shared
         let url = URL(string: "https://system.bigdish.com/api/regions")!
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
@@ -85,7 +66,6 @@ class ListViewController: UIViewController {
                 let cities = json.data
                 self.cities.accept(cities)
                 self.filteredCities.accept(cities)
-                
                 print(json)
             } catch {
                 print("JSON serialization error: \(error.localizedDescription)")
@@ -96,6 +76,10 @@ class ListViewController: UIViewController {
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 10

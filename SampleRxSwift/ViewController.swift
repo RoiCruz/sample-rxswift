@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        prepareViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -31,6 +33,14 @@ class ViewController: UIViewController {
 
         let cityStr = UserDefaults.standard.object(forKey:"cityName") as? String ?? ""
         cityLabel.text = cityStr.count > 0 ? "Selected city: \(cityStr)" : ""
+    }
+    
+    func prepareViews() {
+        
+        cityLabel.text = ""
+        selectCityButton.layer.cornerRadius = 10;
+        selectCityButton.clipsToBounds = true;
+
     }
 }
 
