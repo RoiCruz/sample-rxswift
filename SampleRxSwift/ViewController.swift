@@ -8,13 +8,19 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
+    private let apiClient = APIClient()
+    private let disposeBag = DisposeBag()
 
+
+    @IBOutlet weak var selectCityButton: UIButton!
     @IBOutlet weak var cityLabel: UILabel!
     
     @IBAction func selectCityButtonTapped(_ sender: UIButton) {
+
         //show list of cities
         //do API calls
     }

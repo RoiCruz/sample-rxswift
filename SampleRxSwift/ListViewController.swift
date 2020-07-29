@@ -17,13 +17,34 @@ class ListViewController: UIViewController {
     
     private let apiClient = APIClient()
     private let disposeBag = DisposeBag()
+    private let cities: BehaviorRelay<[CityModel]> = BehaviorRelay(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        cities.bind(to: tableView.rx.items(cellIdentifier: "cityCell", cellType: TableViewCell.self)) { row, model, cell in
+            let name = model.name
+            cell.titleLabel?.text = name
+            cell.subtitleLabel?.text = model.country.name
+            let index = name.index(name.startIndex, offsetBy: 3)
+            let substring = name.prefix(upTo: index)
+            cell.avatarLabel?.text = String(substring)
+        }.disposed(by: disposeBag)
+        
+//        tableView.rx.modelSelected(CityModel.self)
+//            .map{ URL(string: $0.name) }
+//            .subscribe(onNext: { [weak self] name in
+//                guard let name = name else {
+//                    return
+//                }
+//                //self?.present(SFSafariViewController(url: url), animated: true)
+//                //pop to previous vc
+//                //save to local db
+//            }).disposed(by: disposeBag)
+        
         fetchData()
     }
-        
+    
     //#MARK: Private Methods
     
     private func citySelected() {
@@ -38,61 +59,23 @@ class ListViewController: UIViewController {
     }
     
     private func fetchData() {
-        
         let session = URLSession.shared
         let url = URL(string: "https://system.bigdish.com/api/regions")!
         let task = session.dataTask(with: url, completionHandler: { data, response, error in
-            // Check the response
-            //print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-            
-            // Check if an error occured
             if error != nil {
-                // HERE you can manage the error
-                print(error)
                 return
             }
-            // Serialize the data into an object
             do {
-
-                
                 let json = try JSONDecoder().decode(Response.self, from: data! )
-                    //try JSONSerialization.jsonObject(with: data!, options: [])
+                let cities = json.data
+                self.cities.accept(cities)
+                
                 print(json)
             } catch {
-                print("Error during JSON serialization: \(error.localizedDescription)")
+                print("JSON serialization error: \(error.localizedDescription)")
             }
-            
         })
         task.resume()
-
-        
-        
-        
-//        let urlString = "url"
-//        if let url = URL(string: urlString) {
-//            URLSession.shared.dataTask(with: url){ data, response, error in
-//                if let data = data {
-//                    print("data")
-//
-//                    let decoder = JSONDecoder()
-//                    if let json = try? decoder.decode([CityModel].self, from: data)
-//                    completion(json)
-//                }
-//            }.resume()
-//        }
-//
-//
-//        let items =  BehaviorRelay(value: [CityModel]())
-//        items.asObservable().bind { (Observable<[CityModel]>) -> Result<Any, Failure: Error> in
-//            items.value =
-//        }
-//        items.asObservable.bindTo(....).addDisposableTo(bag)
-//
-        
-        //        let x = UniversityRequest.init()
-        //        let request = Observable<[CityModel]>.
-        //        x.apiClient.send(apiRequest: request)
-
     }
 }
 

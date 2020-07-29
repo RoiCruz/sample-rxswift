@@ -62,6 +62,7 @@
                     <navigationItem key="navigationItem" id="Wv7-53-KYw"/>
                     <connections>
                         <outlet property="cityLabel" destination="FmW-PV-yYo" id="R7J-6D-ucS"/>
+                        <outlet property="selectCityButton" destination="fVZ-db-7XM" id="HaD-PT-1WK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -162,8 +163,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="JGO-tN-L4k" id="ILO-Xh-Vh2"/>
-                                    <outlet property="delegate" destination="JGO-tN-L4k" id="Di6-gZ-q1o"/>
+                                    <outlet property="delegate" destination="JGO-tN-L4k" id="SS6-B6-P2D"/>
                                 </connections>
                             </tableView>
                         </subviews>
